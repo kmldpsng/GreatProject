@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GreatProject.Model;
 using GreatProject.DbContext;
+using Microsoft.AspNetCore.Cors;
 
 namespace GreatProject.Controllers
 {
     [ApiController]
-   // [Route("controller")]
+    // [Route("controller")]
+    //[EnableCors()] //origins: "*", headers: "*", methods: "*", exposedHeaders: "X-My-Header"
     public class EmployeeFeedsController : ControllerBase
     {
         private readonly IEmployeeFeedsContext _employeeFeedsContext;
