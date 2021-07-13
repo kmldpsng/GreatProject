@@ -8,7 +8,6 @@ export function Frontpage(props) {
     useEffect(() => {
         async function fetchData() {
         const data = await FetchUserData();
-       // console.log("data object in here.... ",data);
         setUserId(data)
         }
         fetchData();
