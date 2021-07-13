@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GreatProject.UI\**" />
+    <Content Remove="GreatProject.UI\**" />
+    <EmbeddedResource Remove="GreatProject.UI\**" />
+    <None Remove="GreatProject.UI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.12.4" />
   </ItemGroup>
 
