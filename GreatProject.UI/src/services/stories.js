@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFetch } from './hooks';
+import * as Constant from '../variables'
 
 function Stories() {
-  const stories = useFetch('https://news-proxy-server.appspot.com/topstories', []);
-
+  const stories = useFetch(Constant.Stories_URL, []);
   return (
     <div className='Stories'>
       <h3>Stories</h3>

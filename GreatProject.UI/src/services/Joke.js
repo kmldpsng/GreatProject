@@ -1,8 +1,9 @@
 import React from 'react';
 import { useFetch } from './hooks';
+import * as Constant from '../variables';
 
 function Joke() {
-  const { setup, punchline } = useFetch('https://official-joke-api.appspot.com/jokes/random', {});
+  const { setup, punchline } = useFetch(Constant.Joke_URL, {});
 
   return (
     <div>

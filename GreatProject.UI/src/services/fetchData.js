@@ -1,8 +1,9 @@
 import { useFetch } from "./hooks";
+import * as Constants from '../variables'
 
 export default function GetData() {
 
-    const userData = useFetch("https://localhost:5001/getemployeefeeds", []);
+    const userData = useFetch(Constants.FetchUserData_URL, []);
 
     return (
         <div>
