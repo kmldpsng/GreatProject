@@ -1,9 +1,11 @@
 import { Frontpage } from '../src/Organism/frontpage';
+import Homepage from '../src/Organism/homepage'
 
-export default function App() {
+function App() {
 
     return (<>
-        <Frontpage />
-
+        <Homepage />
     </>)
 }
+
+export default App;
