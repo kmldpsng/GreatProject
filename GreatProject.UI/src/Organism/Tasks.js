@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './homepage.css';
 import { v4 as uuidv4 } from 'uuid';
+
+const TASK_MAP_KEY = "TASK_MAP_KEY";
+
+const storeTasks = (taskMap) => {
+    localStorage.setItem(TASK_MAP_KEY, JSON.stringify(taskMap));
+}
+
+const initialValues = () => {
+    const initialValues = JSON.parse(localStorage.getItem(TASK_MAP_KEY));
+    return (initialValues ? initialValues : { tasks: [], completedTasks: [] });
+}
 
 export default function Tasks() {
 
     const [taskText, setTaskText] = useState('');
-    const [completedTasks, setCompletedTask] = useState([]);
-    const [tasks, setTasks] = useState([]);
+    const fetchInitialValues = initialValues();
+    const [tasks, setTasks] = useState(fetchInitialValues.tasks);
+    const [completedTasks, setCompletedTask] = useState(fetchInitialValues.completedTasks);
 
     const updateTaskText = event => {
         setTaskText(event.target.value);
@@ -25,6 +37,11 @@ export default function Tasks() {
     var deleteTask = removeTask => () => {
         setCompletedTask(completedTasks.filter(task => task.id !== removeTask.id))
     }
+
+    useEffect(() => {
+        storeTasks({ tasks, completedTasks })
+    }
+    );
 
     return (
         <>
@@ -50,8 +67,8 @@ export default function Tasks() {
                     const { id, taskText } = task;
                     return (
                         <div key={id}>
-                            {taskText}{" "}              
-                        <span className = 'delete-task' onClick={deleteTask(task)}>x</span>
+                            {taskText}{" "}
+                            <span className='delete-task' onClick={deleteTask(task)}>x</span>
                         </div>
                     )
                 })}
