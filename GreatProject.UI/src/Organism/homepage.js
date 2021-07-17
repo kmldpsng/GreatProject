@@ -1,7 +1,8 @@
 ﻿import React, {useState} from 'react';
 import './homepage.css';
-import Joke from '../services/Joke'
-import Stories from '../services/stories'
+import Joke from '../services/Joke';
+import Stories from '../services/stories';
+import Tasks from './Tasks';
 
 export default function Homepage() {
     
@@ -31,6 +32,8 @@ export default function Homepage() {
         </div>
         <hr />
         <Joke />
+        <hr />
+        <Tasks />
         <hr />
         <Stories />
       </div>
