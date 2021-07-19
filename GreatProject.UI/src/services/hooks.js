@@ -7,7 +7,26 @@ export const useFetch = (url, initialValue) => {
     fetch(url)
       .then(response => response.json())
       .then(json => setResult(json));
-  }, []);
+  }, [url]);
 
   return result;
+}
+
+export const UseDynamicTransitions = ({ delay, increment, length }) => {
+
+  const [index, setIndex] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(storedIndex => {
+        return (storedIndex + increment) % length;
+      })
+    }, delay);
+
+    return (() => {
+      clearInterval(interval)
+    })
+  }, [delay, increment, length]);
+
+  return index;
 }

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PICTURES from '../data/pictures';
 import './homepage.css';
+import { UseDynamicTransitions } from '../services/hooks';
 
 const minimumDelay = 1;
 const minimumIncrement = 1;
+
 export default function Gallery() {
 
     const [delay, setDelay] = useState(minimumDelay * 1000);
-    const [index, setIndex] = useState(1);
     const [increment, setIncrement] = useState(minimumIncrement);
 
     const updateDelayTimer = (event => {
@@ -20,32 +21,23 @@ export default function Gallery() {
         setIncrement((userDefinedIncrement < minimumIncrement) ? minimumIncrement : userDefinedIncrement);
     });
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex(storedIndex => {
-                return (storedIndex + increment) % PICTURES.length;
-            })
-        }, delay);
+    const index = UseDynamicTransitions({ delay, increment, length: PICTURES.length })
 
-        return (() => {
-            clearInterval(interval)
-        })
-    }, [delay,increment]);
 
     return (
 
         <div className='Gallery'>
             <img src={PICTURES[index].image} alt="displaying"></img>
 
-            <div className = 'multiform'>
+            <div className='multiform'>
                 <div>
-                Gallery Delay Transition (seconds) :
-                <input type='Number' onChange={updateDelayTimer} />
-            </div>
-            <div>
-                Increment :
-                <input type='Number' onChange={updateIncrements} />
-            </div>
+                    Gallery Delay Transition (seconds) :
+                    <input type='Number' onChange={updateDelayTimer} />
+                </div>
+                <div>
+                    Increment :
+                    <input type='Number' onChange={updateIncrements} />
+                </div>
             </div>
         </div>
     )
