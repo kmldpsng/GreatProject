@@ -4,11 +4,13 @@ import Joke from '../services/Joke';
 import Stories from '../services/stories';
 import Tasks from './Tasks';
 import Gallery from './gallery';
+import Matrix from './matrix';
 
 export default function Homepage() {
 
   const [userQuery, setUserQuery] = useState('');
   const [display, setDisplay] = useState(true);
+  const [displayMatrix, setDisplayMatrix] = useState(true);
 
   const updateUserQuery = event => {
     console.log('userQuery', userQuery);
@@ -29,7 +31,12 @@ export default function Homepage() {
     setDisplay(!display);
   })
 
+  const toggleMatrix = (() => {
+    setDisplayMatrix(!displayMatrix);
+  })
+
   const label = display ? "Hide Gallery" : "Show Gallery";
+  const matrixLabel = displayMatrix ? "Hide Matrix" : "Show Matrix";
 
   return (
     <div className="App">
@@ -49,6 +56,12 @@ export default function Homepage() {
       <button onClick={toggleGallery}>{label}</button>
       <hr />
       <Stories />
+      <div>
+        {displayMatrix ? <Matrix /> : null}
+      </div>
+      <button onClick={toggleMatrix}>{matrixLabel}</button>
+      <hr />
+
     </div>
   );
 }

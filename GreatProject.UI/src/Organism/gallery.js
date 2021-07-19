@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PICTURES from '../data/pictures';
+import './homepage.css';
 
 const minimumDelay = 1;
 const minimumIncrement = 1;
@@ -36,7 +37,8 @@ export default function Gallery() {
         <div className='Gallery'>
             <img src={PICTURES[index].image} alt="displaying"></img>
 
-            <div>
+            <div className = 'multiform'>
+                <div>
                 Gallery Delay Transition (seconds) :
                 <input type='Number' onChange={updateDelayTimer} />
             </div>
@@ -44,7 +46,7 @@ export default function Gallery() {
                 Increment :
                 <input type='Number' onChange={updateIncrements} />
             </div>
-
+            </div>
         </div>
     )
 }
