@@ -61,7 +61,6 @@ export default function Homepage() {
       </div>
       <button onClick={toggleMatrix}>{matrixLabel}</button>
       <hr />
-
     </div>
   );
 }
